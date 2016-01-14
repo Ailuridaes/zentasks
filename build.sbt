@@ -2,14 +2,16 @@ name := """zentasks"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava)
+lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
 
 scalaVersion := "2.11.6"
 
 libraryDependencies ++= Seq(
+  evolutions,
+  javaJpa,
   javaJdbc,
-  cache,
-  javaWs
+  "mysql" % "mysql-connector-java" % "5.1.18",
+  "org.hibernate" % "hibernate-entitymanager" % "4.3.7.Final"
 )
 
 // Play provides two styles of routers, one expects its actions to be injected, the
