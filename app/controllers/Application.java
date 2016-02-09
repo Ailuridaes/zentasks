@@ -11,6 +11,7 @@ import views.html.*;
 
 public class Application extends Controller {
 
+	@Security.Authenticated(Secured.class)
     public Result index() {
         return ok(index.render(
 			Project.find.all(),
@@ -37,7 +38,14 @@ public class Application extends Controller {
 		}
 	}
 	
-	
+	public Result logout() {
+		session().clear();
+		flash("success", "You've been logged out");
+		return redirect(
+			routes.Application.login()
+		);
+	}
+		
 	public static class Login {
 		public String email;
 		public String password;

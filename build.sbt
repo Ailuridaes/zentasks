@@ -14,6 +14,9 @@ libraryDependencies ++= Seq(
   "org.hibernate" % "hibernate-entitymanager" % "4.3.7.Final"
 )
 
+//enable verbose test output? Doesn't appear to work
+//testOptions += Tests.Argument(TestFrameworks.JUnit, "-v", "-a")
+
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.
 routesGenerator := InjectedRoutesGenerator
