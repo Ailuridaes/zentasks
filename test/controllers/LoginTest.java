@@ -39,7 +39,6 @@ public class LoginTest extends WithApplication {
 		Result result = route(request);
 
 		// Getting 303 right now because it redirects to a uri accessible with a GET method
-		// Should be 302 once authentication is fully implemented
 		assertEquals(303, status(result));
 		assertEquals("bob@example.com", session(result).get("email"));
 	}
