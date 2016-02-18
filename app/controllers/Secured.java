@@ -13,6 +13,13 @@ public class Secured extends Security.Authenticator {
         return ctx.session().get("email");
     }
 
+    public static boolean isMemberOf(Long project) {
+        return Project.isMember(
+            project,
+            Context.current().request().username()
+        );
+    }
+
     @Override
     public Result onUnauthorized(Context ctx) {
         return redirect(routes.Application.login());

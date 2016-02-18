@@ -24,6 +24,20 @@ public class Project extends Model {
 
     public static Model.Finder<Long,Project> find = new Model.Finder(Project.class);
 
+    public static List<Project> findInvolving(String user) {
+        return find.where()
+            .eq("members.email", user)
+            .findList();
+    }
+
+    // Used in Secured class to determine which projects to show a user
+    public static boolean isMember(Long project, String user) {
+    return find.where()
+        .eq("members.email", user)
+        .eq("id", project)
+        .findRowCount() > 0;
+    }
+
     public static Project create(String name, String folder, String owner) {
         Project project = new Project(name, folder, User.find.ref(owner));
         project.save();
@@ -31,9 +45,11 @@ public class Project extends Model {
         return project;
     }
 
-    public static List<Project> findInvolving(String user) {
-        return find.where()
-            .eq("members.email", user)
-            .findList();
+    public static String rename(Long projectId, String newName) {
+        Project project = find.ref(projectId);
+        project.name = newName;
+        project.update();
+        return newName;
     }
+
 }

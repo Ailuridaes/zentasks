@@ -16,3 +16,9 @@ GET     /logout                      controllers.Application.logout()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Project actions
+POST    /projects                   controllers.Projects.add()
+POST    /projects/groups            controllers.Projects.addGroup()
+DELETE  /projects/:project          controllers.Projects.delete(project: Long)
+PUT     /projects/:project          controllers.Projects.rename(project: Long)
