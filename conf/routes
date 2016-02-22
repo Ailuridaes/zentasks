@@ -22,3 +22,6 @@ POST    /projects                   controllers.Projects.add()
 POST    /projects/groups            controllers.Projects.addGroup()
 DELETE  /projects/:project          controllers.Projects.delete(project: Long)
 PUT     /projects/:project          controllers.Projects.rename(project: Long)
+
+# Javascript router
+GET     /assets/javascripts/routes          controllers.Application.javascriptRoutes()
