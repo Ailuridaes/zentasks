@@ -60,6 +60,7 @@ public class Application extends Controller {
 		}
 
 		public Result javascriptRoutes() {
+			System.out.println("Triggered javascript routing");
 	    response().setContentType("text/javascript");
 	    return ok(
 	        Routes.javascriptRouter("jsRoutes",
